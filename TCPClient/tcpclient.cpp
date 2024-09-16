@@ -119,16 +119,47 @@ void TcpClient::recvMsg()
     {
         if(0 == strcmp(SEARCH_USR_NO, pdu->caData))
         {
-            QMessageBox::information(this, "搜索", QString("'%1' : not exist").arg(OpeWidget::getInstance().getFriend()->m_strSearchName));
+            QMessageBox::information(this, "搜索", QString("%1 : 用户不存在").arg(OpeWidget::getInstance().getFriend()->m_strSearchName));
         }
         else if(0 == strcmp(SEARCH_USR_ONLINE, pdu->caData))
         {
-            QMessageBox::information(this, "搜索", QString("'%1' : online").arg(OpeWidget::getInstance().getFriend()->m_strSearchName));
+            QMessageBox::information(this, "搜索", QString("%1 : 在线").arg(OpeWidget::getInstance().getFriend()->m_strSearchName));
         }
         else if(0 == strcmp(SEARCH_USR_OFFLINE, pdu->caData))
         {
-            QMessageBox::information(this, "搜索", QString("'%1' : offline").arg(OpeWidget::getInstance().getFriend()->m_strSearchName));
+            QMessageBox::information(this, "搜索", QString("%1 : 离线").arg(OpeWidget::getInstance().getFriend()->m_strSearchName));
         }
+        break;
+    }
+    case ENUM_MSG_TYPE_ADD_FRIEND_REQUEST:
+    {
+        qDebug() << "ENUM_MSG_TYPE_ADD_FRIEND_REQUEST";
+        char caName[32] = {'\0'};
+        strncpy(caName, pdu->caData+32, 32);
+        int ret = QMessageBox::information(this, "好友请求", QString("\'%1\' : 想要添加你为好友").arg(caName), QMessageBox::Yes, QMessageBox::No);
+        PDU *respdu = mkPDU(0);
+        memcpy(respdu->caData, pdu->caData, 64);
+        if(ret == QMessageBox::Yes)
+        {
+            respdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_AGREE;
+        }
+        else
+        {
+            respdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_REFUSE;
+        }
+        m_tcpSocket.write((char*)respdu, respdu->uiPDULen);
+        free(respdu);
+        respdu = NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_ADD_FRIEND_RESPOND:
+    {
+        QMessageBox::information(this, "添加好友", pdu->caData);
+        break;
+    }
+    case ENUM_MSG_TYPE_FLUSH_FRIEND_RESPOND:
+    {
+        OpeWidget::getInstance().getFriend()->updateFriendList(pdu);
         break;
     }
     default:

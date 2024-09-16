@@ -34,18 +34,22 @@ void Online::showUsr(PDU *pdu)
 void Online::on_addFriend_pb_clicked()
 {
     QListWidgetItem *pItem = ui->online_lw->currentItem();
-
-    QString strPerUsrName = pItem->text();
-    qDebug() << strPerUsrName;
-    QString strOnlineName = TcpClient::getinstance().getOnlineName();
-    PDU *pdu = mkPDU(0);
-    pdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_REQUEST;
-    memcpy(pdu->caData, strPerUsrName.toStdString().c_str(), strPerUsrName.size());
-    memcpy(pdu->caData+32, strOnlineName.toStdString().c_str(), strOnlineName.size());
-    TcpClient::getinstance().getTcpSocket().write((char*)pdu, pdu->uiPDULen);
-    free(pdu);
-    pdu = NULL;
-
-
+    if(pItem == nullptr)
+    {
+        QMessageBox::critical(this, "添加失败", "选择为空");
+    }
+    else
+    {
+        QString strPerUsrName = pItem->text();
+        qDebug() << strPerUsrName;
+        QString strOnlineName = TcpClient::getinstance().getOnlineName();
+        PDU *pdu = mkPDU(0);
+        pdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_REQUEST;
+        memcpy(pdu->caData, strPerUsrName.toStdString().c_str(), strPerUsrName.size());
+        memcpy(pdu->caData+32, strOnlineName.toStdString().c_str(), strOnlineName.size());
+        TcpClient::getinstance().getTcpSocket().write((char*)pdu, pdu->uiPDULen);
+        free(pdu);
+        pdu = NULL;
+    }
 }
 
