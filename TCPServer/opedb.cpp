@@ -125,3 +125,79 @@ int OpeDB::handleSearchUsr(const char *name)
         return -1;
     }
 }
+
+int OpeDB::handleAddFriend(const char *pername, const char *name)
+{
+    if(pername == NULL || name == NULL)
+    {
+        return -1;
+    }
+    QString data = QString("select * from friend where (id = (select id from usrInfo where name = \'%1\' ) and friendid = (select id from usrInfo where name = \'%2\'))"
+                           "or (id = (select id from usrInfo where name = \'%3\' ) and friendid = (select id from usrInfo where name = \'%4\'))").arg(pername).arg(name).arg(name).arg(pername);
+    qDebug() << data;
+    QSqlQuery query;
+    query.exec(data);
+    if(query.next())
+    {
+        return 0;  //双方已经是好友
+    }
+    else
+    {
+        QString data = QString("select online from usrInfo where name=\'%1\'").arg(pername);
+        QSqlQuery query;
+        query.exec(data);
+        if(query.next())
+        {
+            int ret = query.value(0).toInt();
+            if(ret == 1)
+            {
+                return 1;   //对方在线
+            }
+            else if(ret == 0)
+            {
+                return 2;   //对方不在线
+            }
+        }
+        else
+        {
+            return 3;   //对方不存在
+        }
+    }
+    return -1;
+}
+
+void OpeDB::handleAddAgree(const char *pername, const char *name)
+{
+    if(pername == NULL || name == NULL)
+    {
+        return;
+    }
+    else
+    {
+        QString data = QString("insert into friend(id, friendid) select(select id from usrInfo where name = \'%1\') as id,(select id from usrInfo where name = \'%2\') as friendid union all select(select id from usrInfo where name = \'%2\') as id,(select id from usrInfo where name = \'%1\') as friendid").arg(name).arg(pername);
+        qDebug() << data;
+        QSqlQuery query;
+        query.exec(data);
+        qDebug() << pername << name << "插入成功";
+    }
+}
+
+QStringList OpeDB::handleFlushFriend(const char *name)
+{
+    QStringList strFriendList;
+    strFriendList.clear();
+    if(name == NULL)
+    {
+        return strFriendList;
+    }
+    QString data = QString("select name from usrInfo where id in (select friendid from friend where id in (select id from usrInfo where name = \'%1\')) and online = 1").arg(name);
+    QSqlQuery query;
+    query.exec(data);
+    qDebug() << data;
+    while(query.next())
+    {
+        strFriendList.append(query.value(0).toString());
+        qDebug() << query.value(0);
+    }
+    return strFriendList;
+}

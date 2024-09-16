@@ -7,15 +7,18 @@
 //#include "opewidget.h"
 typedef unsigned int uint;
 
-#define REGIST_OK "regist ok"
-#define REGIST_FAILED "regist failed : name existed"
+#define REGIST_OK "注册成功"
+#define REGIST_FAILED "注册失败:用户名已存在"
 
-#define LOGIN_OK "login ok"
-#define LOGIN_FAILED "login failed : name error or pwd error or relogin"
-#define SEARCH_USR_NO "No such people"
-#define SEARCH_USR_ONLINE "online"
-#define SEARCH_USR_OFFLINE "offline"
-
+#define LOGIN_OK "登录成功"
+#define LOGIN_FAILED "登录失败:用户名或密码为空或用户已登录"
+#define SEARCH_USR_NO "用户不存在"
+#define SEARCH_USR_ONLINE "在线"
+#define SEARCH_USR_OFFLINE "离线"
+#define UNKNOWN_ERROR "未知错误"
+#define EXISTED_FRIEND "好友已存在"
+#define ADD_FRIEND_OFFLINE "用户离线"
+#define ADD_FRIEND_NO_EXIST "用户不存在"
 
 enum ENUM_MSG_TYPE
 {
@@ -34,6 +37,12 @@ enum ENUM_MSG_TYPE
 
     ENUM_MSG_TYPE_ADD_FRIEND_REQUEST,   //添加好友请求
     ENUM_MSG_TYPE_ADD_FRIEND_RESPOND,   //添加好友回复
+
+    ENUM_MSG_TYPE_ADD_FRIEND_AGREE,   //同意添加好友
+    ENUM_MSG_TYPE_ADD_FRIEND_REFUSE,   //拒绝添加好友
+
+    ENUM_MSG_TYPE_FLUSH_FRIEND_REQUEST,   //刷新好友请求
+    ENUM_MSG_TYPE_FLUSH_FRIEND_RESPOND,  //刷新好友回复
     // ENUM_MSG_TYPE_REQUEST,
     // ENUM_MSG_TYPE_RESPOND,
     ENUM_MSG_TYPE_MAX = 0x00ffffff
