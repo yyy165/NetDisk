@@ -173,10 +173,25 @@ void MyTcpSocket::recvMsg()
         strncpy(caPerName, pdu->caData, 32);
         strncpy(caName, pdu->caData+32, 32);
         OpeDB::getInstance().handleAddAgree(caPerName, caName);
+        qDebug() << caPerName << caName;
+        PDU *respdu = mkPDU(0);
+        respdu->uiMsgType = ENUM_MSG_TYPE_ADD_YOU;
+        strcpy(respdu->caData, caPerName);
+        write((char*)respdu, respdu->uiPDULen);
+        free(respdu);
+        respdu = NULL;
         break;
     }
     case ENUM_MSG_TYPE_ADD_FRIEND_REFUSE:
     {
+        char caPerName[32] = {'\0'};
+        strncpy(caPerName, pdu->caData, 32);
+        PDU *respdu = mkPDU(0);
+        respdu->uiMsgType = ENUM_MSG_TYPE_REJECT_YOU;
+        strcpy(respdu->caData, caPerName);
+        write((char*)respdu, respdu->uiPDULen);
+        free(respdu);
+        respdu = NULL;
         break;
     }
     case ENUM_MSG_TYPE_FLUSH_FRIEND_REQUEST:

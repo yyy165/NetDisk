@@ -167,6 +167,20 @@ void TcpClient::recvMsg()
         QMessageBox::information(this, "删除好友", DEL_FRIEND_OK);
         break;
     }
+    case ENUM_MSG_TYPE_ADD_YOU:
+    {
+        char caName[32] = {'\0'};
+        strncpy(caName, pdu->caData, 32);
+        QMessageBox::information(this, "添加好友", QString("%1同意了你的好友申请").arg(caName));
+        break;
+    }
+    case ENUM_MSG_TYPE_REJECT_YOU:
+    {
+        char caName[32] = {'\0'};
+        strncpy(caName, pdu->caData, 32);
+        QMessageBox::information(this, "添加好友", QString("%1拒绝了你的好友申请...").arg(caName));
+        break;
+    }
     default:
         break;
     }
