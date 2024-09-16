@@ -19,6 +19,7 @@ typedef unsigned int uint;
 #define EXISTED_FRIEND "好友已存在"
 #define ADD_FRIEND_OFFLINE "用户离线"
 #define ADD_FRIEND_NO_EXIST "用户不存在"
+#define DEL_FRIEND_OK "删除成功"
 
 enum ENUM_MSG_TYPE
 {
@@ -43,6 +44,9 @@ enum ENUM_MSG_TYPE
 
     ENUM_MSG_TYPE_FLUSH_FRIEND_REQUEST,   //刷新好友请求
     ENUM_MSG_TYPE_FLUSH_FRIEND_RESPOND,  //刷新好友回复
+
+    ENUM_MSG_TYPE_DELETE_FRIEND_REQUEST,   //删除好友请求
+    ENUM_MSG_TYPE_DELETE_FRIEND_RESPOND,  //删除好友回复
     // ENUM_MSG_TYPE_REQUEST,
     // ENUM_MSG_TYPE_RESPOND,
     ENUM_MSG_TYPE_MAX = 0x00ffffff

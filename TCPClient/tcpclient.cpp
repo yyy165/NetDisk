@@ -38,7 +38,7 @@ void TcpClient::loadConfig()
         QString strData = baData.toStdString().c_str();
         file.close();
 
-        strData.replace("\r\n", " ");
+        strData.replace("\n", " ");
 
         QStringList strList = strData.split(" ");
 
@@ -160,6 +160,11 @@ void TcpClient::recvMsg()
     case ENUM_MSG_TYPE_FLUSH_FRIEND_RESPOND:
     {
         OpeWidget::getInstance().getFriend()->updateFriendList(pdu);
+        break;
+    }
+    case ENUM_MSG_TYPE_DELETE_FRIEND_RESPOND:
+    {
+        QMessageBox::information(this, "删除好友", DEL_FRIEND_OK);
         break;
     }
     default:

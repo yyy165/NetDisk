@@ -1483,7 +1483,10 @@ release/friend.o: friend.cpp friend.h \
 		../../../6.6.3/mingw_64/include/QtNetwork/qhostaddress.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/QInputDialog \
 		../../../6.6.3/mingw_64/include/QtWidgets/qinputdialog.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qdialog.h
+		../../../6.6.3/mingw_64/include/QtWidgets/qdialog.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QMessageBox \
+		../../../6.6.3/mingw_64/include/QtWidgets/qmessagebox.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\friend.o friend.cpp
 
 release/main.o: main.cpp tcpclient.h \
