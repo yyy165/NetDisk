@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QHostAddress>
+#include "privatechat.h"
 
 TcpClient::TcpClient(QWidget *parent)
     : QWidget(parent)
@@ -179,6 +180,20 @@ void TcpClient::recvMsg()
         char caName[32] = {'\0'};
         strncpy(caName, pdu->caData, 32);
         QMessageBox::information(this, "添加好友", QString("%1拒绝了你的好友申请...").arg(caName));
+        break;
+    }
+    case ENUM_MSG_TYPE_PRIVATE_CHAT_REQUEST:
+    {
+        qDebug() << "我是case";
+        if(privateChat::getinstance().isHidden())
+        {
+            privateChat::getinstance().show();
+        }
+        char caSendName[32] = {'\0'};
+        strncpy(caSendName, pdu->caData, 32);
+        QString strSendName = caSendName;
+        privateChat::getinstance().setChatName(strSendName);
+        privateChat::getinstance().updateMsg(pdu);
         break;
     }
     default:

@@ -3,6 +3,7 @@ debug/friend.o
 debug/main.o
 debug/online.o
 debug/opewidget.o
+debug/privatechat.o
 debug/protocol.o
 debug/tcpclient.o
 debug/qrc_config.o
@@ -10,4 +11,5 @@ debug/moc_book.o
 debug/moc_friend.o
 debug/moc_online.o
 debug/moc_opewidget.o
+debug/moc_privatechat.o
 debug/moc_tcpclient.o

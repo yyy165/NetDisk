@@ -43,3 +43,4 @@ void TcpServer::loadConfig()
         QMessageBox::critical(this, "open config", "open config fail");
     }
 }
+

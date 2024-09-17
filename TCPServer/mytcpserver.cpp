@@ -26,6 +26,7 @@ void MyTcpServer::incomingConnection(qintptr socketDescriptor)
 
 void MyTcpServer::resend(const char *pername, PDU *pdu)
 {
+    qDebug() << "我是resend";
     if(pername == NULL || pdu == NULL)
     {
         return;
@@ -35,7 +36,7 @@ void MyTcpServer::resend(const char *pername, PDU *pdu)
     {
         if(strName == m_tcpSocketList.at(i)->getName())
         {
-            m_tcpSocketList.at(i)->write((char*)pdu->caData, pdu->uiPDULen);
+            m_tcpSocketList.at(i)->write((char*)pdu, pdu->uiPDULen);
             break;
         }
     }
