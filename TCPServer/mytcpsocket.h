@@ -4,6 +4,7 @@
 #include <QTcpSocket>
 #include "protocol.h"
 #include "opedb.h"
+#include <QDir>
 
 class MyTcpSocket : public QTcpSocket
 {

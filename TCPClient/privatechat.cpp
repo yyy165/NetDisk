@@ -47,7 +47,7 @@ void privateChat::on_sendMsg_pb_clicked()
     ui->inputMsg_le->clear();
     if(!strMsg.isEmpty())
     {
-        PDU *pdu = mkPDU(strMsg.size() + 1);
+        PDU *pdu = mkPDU(strMsg.toUtf8().size() + 1);
         pdu->uiMsgType = ENUM_MSG_TYPE_PRIVATE_CHAT_REQUEST;
         memcpy(pdu->caData, m_strLoginName.toStdString().c_str(), m_strLoginName.size());
         memcpy(pdu->caData+32, m_strChatName.toStdString().c_str(), m_strChatName.size());

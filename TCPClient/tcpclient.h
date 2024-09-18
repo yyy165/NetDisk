@@ -24,6 +24,7 @@ public:
     static TcpClient &getinstance();
     QTcpSocket &getTcpSocket();
     QString getOnlineName();
+    QString getCurPath();
 
 public slots:
     void showConnect();
@@ -46,5 +47,6 @@ private:
     //连接服务器， 和服务器数据交互
     QTcpSocket m_tcpSocket;
     QString onlineName;
+    QString m_strCurPath;
 };
 #endif // TCPCLIENT_H

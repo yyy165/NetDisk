@@ -2,6 +2,11 @@
 #define BOOK_H
 
 #include <QWidget>
+#include <QListWidget>
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include "protocol.h"
 
 class Book : public QWidget
 {
@@ -10,6 +15,22 @@ public:
     explicit Book(QWidget *parent = nullptr);
 
 signals:
+
+public slots:
+    void createDir();
+
+private:
+    QListWidget *m_pBookListLW;
+    QPushButton *m_pTurnBackPB;
+    QPushButton *m_pCreateDirPB;
+    QPushButton *m_pDelDirPB;
+    QPushButton *m_pRenamePB;
+    QPushButton *m_pFlushDirPB;
+    QPushButton *m_pUpLoadPB;
+    QPushButton *m_pDownLoadPB;
+    QPushButton *m_pDelFilePB;
+    QPushButton *m_pShareFilePB;
+
 };
 
 #endif // BOOK_H

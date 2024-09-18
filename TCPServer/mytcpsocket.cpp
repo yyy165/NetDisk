@@ -39,6 +39,8 @@ void MyTcpSocket::recvMsg()
         if(ret)
         {
             strcpy(respdu->caData, REGIST_OK);
+            QDir dir;
+            qDebug() << "create dir" << dir.mkdir(QString("./%1").arg(caName));
         }
         else
         {
@@ -232,6 +234,54 @@ void MyTcpSocket::recvMsg()
         strncpy(caPerName, pdu->caData + 32, 32);
         qDebug() << caPerName;
         MyTcpServer::getInstance().resend(caPerName, pdu);
+        break;
+    }
+    case ENUM_MSG_TYPE_GROUP_CHAT_REQUEST:
+    {
+        QStringList onlineUsr = OpeDB::getInstance().handleAllOnline();
+        for(int i = 0;i < onlineUsr.size();i++)
+        {
+            MyTcpServer::getInstance().resend(onlineUsr.at(i).toStdString().c_str(), pdu);
+        }
+        break;
+    }
+    case ENUM_MSG_TYPE_CREATE_DIR_REQUEST:
+    {
+        QDir dir;
+        QString strCurPath = QString("%1").arg((char*)pdu->caMsg);
+        PDU *respdu;
+        qDebug() << strCurPath;
+        bool ret = dir.exists(strCurPath);
+        if(ret) //当前目录存在
+        {
+            char caNewDir[32] = {'\0'};
+            memcpy(caNewDir, pdu->caData + 32, 32);
+            QString strNewPath = strCurPath + "/" + caNewDir;
+            qDebug() << strNewPath;
+            ret = dir.exists(strNewPath);
+            if(ret) //新目录存在
+            {
+                respdu = mkPDU(0);
+                respdu->uiMsgType = ENUM_MSG_TYPE_CREATE_DIR_RESPOND;
+                strcpy(respdu->caData, FILE_NAME_EXIST);
+            }
+            else    //新目录不存在
+            {
+                dir.mkdir(strNewPath);
+                respdu = mkPDU(0);
+                respdu->uiMsgType = ENUM_MSG_TYPE_CREATE_DIR_RESPOND;
+                strcpy(respdu->caData, CREATE_DIR_OK);
+            }
+        }
+        else    //当前目录不存在
+        {
+            respdu = mkPDU(0);
+            respdu->uiMsgType = ENUM_MSG_TYPE_CREATE_DIR_RESPOND;
+            strcpy(respdu->caData, DIR_NO_EXIST);
+        }
+        write((char*)respdu, respdu->uiPDULen);
+        free(respdu);
+        respdu = NULL;
         break;
     }
     default:

@@ -69,6 +69,11 @@ QString TcpClient::getOnlineName()
     return onlineName;
 }
 
+QString TcpClient::getCurPath()
+{
+    return m_strCurPath;
+}
+
 void TcpClient::showConnect()
 {
     QMessageBox::information(this, "连接服务器" , "连接服务器成功");
@@ -100,6 +105,7 @@ void TcpClient::recvMsg()
     {
         if(0 == strcmp(pdu->caData, LOGIN_OK))
         {
+            m_strCurPath = QString("./%1").arg(onlineName);
             QMessageBox::information(this, "登录", LOGIN_OK);
             OpeWidget::getInstance().show();
             hide();
@@ -196,6 +202,16 @@ void TcpClient::recvMsg()
         privateChat::getinstance().updateMsg(pdu);
         break;
     }
+    case ENUM_MSG_TYPE_GROUP_CHAT_REQUEST:
+    {
+        OpeWidget::getInstance().getFriend()->updateGroupChat(pdu);
+        break;
+    }
+    case ENUM_MSG_TYPE_CREATE_DIR_RESPOND:
+    {
+        QMessageBox::information(this, "新建文件夹", pdu->caData);
+        break;
+    }
     default:
         break;
     }
@@ -210,7 +226,7 @@ void TcpClient::on_send_pb_clicked()
     QString strMsg = ui->lineEdit->text();
     if(!strMsg.isEmpty())
     {
-        PDU *pdu = mkPDU(strMsg.size());
+        PDU *pdu = mkPDU(strMsg.toUtf8().size());
         pdu->uiMsgType = 8888;
         memcpy(pdu->caMsg, strMsg.toStdString().c_str(), strMsg.size());
         m_tcpSocket.write((char*)pdu, pdu->uiPDULen);

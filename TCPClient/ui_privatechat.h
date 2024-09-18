@@ -34,7 +34,7 @@ public:
     {
         if (privateChat->objectName().isEmpty())
             privateChat->setObjectName("privateChat");
-        privateChat->resize(680, 559);
+        privateChat->resize(334, 285);
         verticalLayout_2 = new QVBoxLayout(privateChat);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout = new QVBoxLayout();

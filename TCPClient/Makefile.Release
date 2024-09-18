@@ -313,6 +313,36 @@ release/moc_book.cpp: book.h \
 		../../../6.6.3/mingw_64/include/QtCore/QSizeF \
 		../../../6.6.3/mingw_64/include/QtGui/QTransform \
 		../../../6.6.3/mingw_64/include/QtCore/qnativeinterface.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QListWidget \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlistwidget.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlistview.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qframe.h \
+		../../../6.6.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		../../../6.6.3/mingw_64/include/QtCore/qitemselectionmodel.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		../../../6.6.3/mingw_64/include/QtGui/qvalidator.h \
+		../../../6.6.3/mingw_64/include/QtCore/qregularexpression.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qslider.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qstyle.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qtabbar.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qtabwidget.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qrubberband.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QPushButton \
+		../../../6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		../../../6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlayout.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QVBoxLayout \
+		protocol.h \
 		release/moc_predefs.h \
 		../../../6.6.3/mingw_64/bin/moc.exe
 	D:\QT\6.6.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/QT/Project/NetDisk/TCPClient/release/moc_predefs.h -ID:/QT/6.6.3/mingw_64/mkspecs/win32-g++ -ID:/QT/Project/NetDisk/TCPClient -ID:/QT/6.6.3/mingw_64/include -ID:/QT/6.6.3/mingw_64/include/QtWidgets -ID:/QT/6.6.3/mingw_64/include/QtGui -ID:/QT/6.6.3/mingw_64/include/QtNetwork -ID:/QT/6.6.3/mingw_64/include/QtCore -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -ID:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include book.h -o release\moc_book.cpp
@@ -1066,6 +1096,7 @@ release/moc_privatechat.cpp: privatechat.h \
 		../../../6.6.3/mingw_64/include/QtCore/QSizeF \
 		../../../6.6.3/mingw_64/include/QtGui/QTransform \
 		../../../6.6.3/mingw_64/include/QtCore/qnativeinterface.h \
+		protocol.h \
 		release/moc_predefs.h \
 		../../../6.6.3/mingw_64/bin/moc.exe
 	D:\QT\6.6.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/QT/Project/NetDisk/TCPClient/release/moc_predefs.h -ID:/QT/6.6.3/mingw_64/mkspecs/win32-g++ -ID:/QT/Project/NetDisk/TCPClient -ID:/QT/6.6.3/mingw_64/include -ID:/QT/6.6.3/mingw_64/include/QtWidgets -ID:/QT/6.6.3/mingw_64/include/QtGui -ID:/QT/6.6.3/mingw_64/include/QtNetwork -ID:/QT/6.6.3/mingw_64/include/QtCore -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -ID:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include privatechat.h -o release\moc_privatechat.cpp
@@ -1441,7 +1472,60 @@ release/book.o: book.cpp book.h \
 		../../../6.6.3/mingw_64/include/QtCore/QSize \
 		../../../6.6.3/mingw_64/include/QtCore/QSizeF \
 		../../../6.6.3/mingw_64/include/QtGui/QTransform \
-		../../../6.6.3/mingw_64/include/QtCore/qnativeinterface.h
+		../../../6.6.3/mingw_64/include/QtCore/qnativeinterface.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QListWidget \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlistwidget.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlistview.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qframe.h \
+		../../../6.6.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		../../../6.6.3/mingw_64/include/QtCore/qitemselectionmodel.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		../../../6.6.3/mingw_64/include/QtGui/qvalidator.h \
+		../../../6.6.3/mingw_64/include/QtCore/qregularexpression.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qslider.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qstyle.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qtabbar.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qtabwidget.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qrubberband.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QPushButton \
+		../../../6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		../../../6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlayout.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QVBoxLayout \
+		protocol.h \
+		tcpclient.h \
+		../../../6.6.3/mingw_64/include/QtCore/QFile \
+		../../../6.6.3/mingw_64/include/QtCore/qfile.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfiledevice.h \
+		../../../6.6.3/mingw_64/include/QtNetwork/QTcpSocket \
+		../../../6.6.3/mingw_64/include/QtNetwork/qtcpsocket.h \
+		../../../6.6.3/mingw_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../6.6.3/mingw_64/include/QtNetwork/qtnetwork-config.h \
+		../../../6.6.3/mingw_64/include/QtNetwork/qtnetworkexports.h \
+		../../../6.6.3/mingw_64/include/QtNetwork/qabstractsocket.h \
+		../../../6.6.3/mingw_64/include/QtNetwork/qhostaddress.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QMessageBox \
+		../../../6.6.3/mingw_64/include/QtWidgets/qmessagebox.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qdialog.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QInputDialog \
+		../../../6.6.3/mingw_64/include/QtWidgets/qinputdialog.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlineedit.h \
+		../../../6.6.3/mingw_64/include/QtGui/qtextcursor.h \
+		../../../6.6.3/mingw_64/include/QtGui/qtextdocument.h \
+		../../../6.6.3/mingw_64/include/QtGui/qtextformat.h \
+		../../../6.6.3/mingw_64/include/QtGui/qpen.h \
+		../../../6.6.3/mingw_64/include/QtGui/qtextoption.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\book.o book.cpp
 
 release/friend.o: friend.cpp friend.h \
@@ -2420,8 +2504,8 @@ release/privatechat.o: privatechat.cpp privatechat.h \
 		../../../6.6.3/mingw_64/include/QtCore/QSizeF \
 		../../../6.6.3/mingw_64/include/QtGui/QTransform \
 		../../../6.6.3/mingw_64/include/QtCore/qnativeinterface.h \
-		ui_privatechat.h \
-		protocol.h
+		protocol.h \
+		ui_privatechat.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\privatechat.o privatechat.cpp
 
 release/protocol.o: protocol.cpp protocol.h
@@ -2652,7 +2736,8 @@ release/tcpclient.o: tcpclient.cpp tcpclient.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qdialog.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
-		../../../6.6.3/mingw_64/include/QtNetwork/QHostAddress
+		../../../6.6.3/mingw_64/include/QtNetwork/QHostAddress \
+		privatechat.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\tcpclient.o tcpclient.cpp
 
 release/qrc_config.o: release/qrc_config.cpp 
