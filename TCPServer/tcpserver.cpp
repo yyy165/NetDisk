@@ -30,7 +30,7 @@ void TcpServer::loadConfig()
         QString strData = baData.toStdString().c_str();
         file.close();
 
-        strData.replace("\r\n", " ");
+        strData.replace("\n", " ");
 
         QStringList strList = strData.split(" ");
 

@@ -212,9 +212,25 @@ void TcpClient::recvMsg()
         QMessageBox::information(this, "新建文件夹", pdu->caData);
         break;
     }
+    case ENUM_MSG_TYPE_FLUSH_DIR_RESPOND:
+    {
+        OpeWidget::getInstance().getBook()->updateFileList(pdu);
+        break;
+    }
+    case ENUM_MSG_TYPE_DELETE_DIR_RESPOND:
+    {
+        QMessageBox::information(this, "删除文件夹", pdu->caData);
+        break;
+    }
+    case ENUM_MSG_TYPE_RENAME_FILE_RESPOND:
+    {
+        QMessageBox::information(this, "重命名文件", pdu->caData);
+        break;
+    }
     default:
         break;
     }
+
 
     free(pdu);
     pdu = NULL;

@@ -2,6 +2,7 @@
 #include <qdebug.h>
 #include <QStringList>
 #include "mytcpserver.h"
+#include <QFileInfoList>
 
 MyTcpSocket::MyTcpSocket(QObject *parent)
     : QTcpSocket{parent}
@@ -278,6 +279,107 @@ void MyTcpSocket::recvMsg()
             respdu = mkPDU(0);
             respdu->uiMsgType = ENUM_MSG_TYPE_CREATE_DIR_RESPOND;
             strcpy(respdu->caData, DIR_NO_EXIST);
+        }
+        write((char*)respdu, respdu->uiPDULen);
+        free(respdu);
+        respdu = NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_FLUSH_DIR_REQUEST:
+    {
+        char *pCurPath = new char[pdu->uiMsgLen];
+        memcpy(pCurPath, pdu->caMsg, pdu->uiMsgLen);
+        QDir dir(pCurPath);
+        QFileInfoList fileInfoList =  dir.entryInfoList();
+        int iFileCount = fileInfoList.size();
+        PDU *respdu = mkPDU(sizeof(FileInfo) * (iFileCount));
+        respdu->uiMsgType = ENUM_MSG_TYPE_FLUSH_DIR_RESPOND;
+        FileInfo *pFileInfo = NULL;
+        QString strFileName;
+        for(int i = 0;i < iFileCount;i++)
+        {
+            // if(QString(".") == fileInfoList[i].fileName()
+            // ||QString("..") == fileInfoList[i].fileName())
+            // {
+            //     continue;
+            // }
+            pFileInfo = (FileInfo*)(respdu->caMsg) + i;
+            strFileName = fileInfoList[i].fileName();
+            memcpy(pFileInfo->caFileName, strFileName.toStdString().c_str(), strFileName.size());
+            if(fileInfoList[i].isDir())
+            {
+                pFileInfo->iFileType = 0;
+            }
+            else if(fileInfoList[i].isFile())
+            {
+                pFileInfo->iFileType = 1;
+            }
+        }
+        write((char*)respdu, respdu->uiPDULen);
+        free(respdu);
+        respdu = NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_DELETE_DIR_REQUEST:
+    {
+        char dirName[32] = {'\0'};
+        strcpy(dirName, pdu->caData);
+        char *curPath = new char[pdu->uiMsgLen];
+        memcpy(curPath, pdu->caMsg, pdu->uiMsgLen);
+        QString strPath = QString("%1/%2").arg(curPath).arg(dirName);
+        qDebug() << strPath;
+
+        QFileInfo fileInfo(strPath);
+        bool ret = false;
+        if(fileInfo.isDir())
+        {
+            QDir dir;
+            dir.setPath(strPath);
+            ret = dir.removeRecursively();
+        }
+        else if(fileInfo.isFile())  //常规文件
+        {
+            ret = false;
+        }
+        PDU *respdu = NULL;
+        if(ret)
+        {
+            respdu = mkPDU(0);
+            memcpy(respdu->caData, DEL_DIR_OK, strlen(DEL_DIR_OK));
+            respdu->uiMsgType = ENUM_MSG_TYPE_DELETE_DIR_RESPOND;
+        }
+        else
+        {
+            respdu = mkPDU(0);
+            memcpy(respdu->caData, DEL_DIR_FAIL, strlen(DEL_DIR_FAIL));
+            respdu->uiMsgType = ENUM_MSG_TYPE_DELETE_DIR_RESPOND;
+        }
+        write((char*)respdu, respdu->uiPDULen);
+        free(respdu);
+        respdu = NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_RENAME_FILE_REQUEST:
+    {
+        char caOldName[32] = {'\0'};
+        char caNewName[32] = {'\0'};
+        strncpy(caOldName, pdu->caData, 32);
+        strncpy(caNewName, pdu->caData + 32, 32);
+        char *pPath = new char[pdu->uiMsgLen + 1];
+        memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
+        QString strOldPath = QString("%1/%2").arg(pPath).arg(caOldName);
+        QString strNewPath = QString("%1/%2").arg(pPath).arg(caNewName);
+        QDir dir;
+        PDU *respdu = mkPDU(0);
+        respdu->uiMsgType = ENUM_MSG_TYPE_RENAME_FILE_RESPOND;
+        bool ret = dir.rename(strOldPath, strNewPath);
+        if(ret)
+        {
+            strcpy(respdu->caData, RENAME_FILE_OK);
+        }
+        else
+        {
+            strcpy(respdu->caData, RENAME_FILE_FAIL);
         }
         write((char*)respdu, respdu->uiPDULen);
         free(respdu);

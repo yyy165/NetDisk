@@ -271,6 +271,15 @@ release/moc_mytcpserver.cpp: mytcpserver.h \
 		../../../6.6.3/mingw_64/include/QtSql/QSqlQuery \
 		../../../6.6.3/mingw_64/include/QtSql/qsqlquery.h \
 		../../../6.6.3/mingw_64/include/QtCore/QStringList \
+		../../../6.6.3/mingw_64/include/QtCore/QDir \
+		../../../6.6.3/mingw_64/include/QtCore/qdir.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfile.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfiledevice.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfileinfo.h \
+		../../../6.6.3/mingw_64/include/QtCore/qdatetime.h \
+		../../../6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../6.6.3/mingw_64/include/QtCore/qtimezone.h \
 		release/moc_predefs.h \
 		../../../6.6.3/mingw_64/bin/moc.exe
 	D:\QT\6.6.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/QT/Project/NetDisk/TCPServer/release/moc_predefs.h -ID:/QT/6.6.3/mingw_64/mkspecs/win32-g++ -ID:/QT/Project/NetDisk/TCPServer -ID:/QT/6.6.3/mingw_64/include -ID:/QT/6.6.3/mingw_64/include/QtWidgets -ID:/QT/6.6.3/mingw_64/include/QtGui -ID:/QT/6.6.3/mingw_64/include/QtNetwork -ID:/QT/6.6.3/mingw_64/include/QtSql -ID:/QT/6.6.3/mingw_64/include/QtCore -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -ID:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include mytcpserver.h -o release\moc_mytcpserver.cpp
@@ -404,6 +413,15 @@ release/moc_mytcpsocket.cpp: mytcpsocket.h \
 		../../../6.6.3/mingw_64/include/QtSql/QSqlQuery \
 		../../../6.6.3/mingw_64/include/QtSql/qsqlquery.h \
 		../../../6.6.3/mingw_64/include/QtCore/QStringList \
+		../../../6.6.3/mingw_64/include/QtCore/QDir \
+		../../../6.6.3/mingw_64/include/QtCore/qdir.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfile.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfiledevice.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfileinfo.h \
+		../../../6.6.3/mingw_64/include/QtCore/qdatetime.h \
+		../../../6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../6.6.3/mingw_64/include/QtCore/qtimezone.h \
 		release/moc_predefs.h \
 		../../../6.6.3/mingw_64/bin/moc.exe
 	D:\QT\6.6.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/QT/Project/NetDisk/TCPServer/release/moc_predefs.h -ID:/QT/6.6.3/mingw_64/mkspecs/win32-g++ -ID:/QT/Project/NetDisk/TCPServer -ID:/QT/6.6.3/mingw_64/include -ID:/QT/6.6.3/mingw_64/include/QtWidgets -ID:/QT/6.6.3/mingw_64/include/QtGui -ID:/QT/6.6.3/mingw_64/include/QtNetwork -ID:/QT/6.6.3/mingw_64/include/QtSql -ID:/QT/6.6.3/mingw_64/include/QtCore -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -ID:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include mytcpsocket.h -o release\moc_mytcpsocket.cpp
@@ -715,6 +733,15 @@ release/moc_tcpserver.cpp: tcpserver.h \
 		../../../6.6.3/mingw_64/include/QtSql/QSqlQuery \
 		../../../6.6.3/mingw_64/include/QtSql/qsqlquery.h \
 		../../../6.6.3/mingw_64/include/QtCore/QStringList \
+		../../../6.6.3/mingw_64/include/QtCore/QDir \
+		../../../6.6.3/mingw_64/include/QtCore/qdir.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfile.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfiledevice.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfileinfo.h \
+		../../../6.6.3/mingw_64/include/QtCore/qdatetime.h \
+		../../../6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../6.6.3/mingw_64/include/QtCore/qtimezone.h \
 		release/moc_predefs.h \
 		../../../6.6.3/mingw_64/bin/moc.exe
 	D:\QT\6.6.3\mingw_64\bin\moc.exe $(DEFINES) --include D:/QT/Project/NetDisk/TCPServer/release/moc_predefs.h -ID:/QT/6.6.3/mingw_64/mkspecs/win32-g++ -ID:/QT/Project/NetDisk/TCPServer -ID:/QT/6.6.3/mingw_64/include -ID:/QT/6.6.3/mingw_64/include/QtWidgets -ID:/QT/6.6.3/mingw_64/include/QtGui -ID:/QT/6.6.3/mingw_64/include/QtNetwork -ID:/QT/6.6.3/mingw_64/include/QtSql -ID:/QT/6.6.3/mingw_64/include/QtCore -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -ID:/QT/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -ID:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include tcpserver.h -o release\moc_tcpserver.cpp
@@ -926,6 +953,15 @@ release/main.o: main.cpp tcpserver.h \
 		../../../6.6.3/mingw_64/include/QtSql/QSqlQuery \
 		../../../6.6.3/mingw_64/include/QtSql/qsqlquery.h \
 		../../../6.6.3/mingw_64/include/QtCore/QStringList \
+		../../../6.6.3/mingw_64/include/QtCore/QDir \
+		../../../6.6.3/mingw_64/include/QtCore/qdir.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfile.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfiledevice.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfileinfo.h \
+		../../../6.6.3/mingw_64/include/QtCore/qdatetime.h \
+		../../../6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../6.6.3/mingw_64/include/QtCore/qtimezone.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/QApplication \
 		../../../6.6.3/mingw_64/include/QtWidgets/qapplication.h \
 		../../../6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
@@ -946,7 +982,6 @@ release/main.o: main.cpp tcpserver.h \
 		../../../6.6.3/mingw_64/include/QtCore/qpromise.h \
 		../../../6.6.3/mingw_64/include/QtGui/qguiapplication.h \
 		../../../6.6.3/mingw_64/include/QtGui/qinputmethod.h \
-		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
 		../../../6.6.3/mingw_64/include/QtGui/qguiapplication_platform.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o main.cpp
 
@@ -1083,6 +1118,15 @@ release/mytcpserver.o: mytcpserver.cpp mytcpserver.h \
 		../../../6.6.3/mingw_64/include/QtSql/QSqlQuery \
 		../../../6.6.3/mingw_64/include/QtSql/qsqlquery.h \
 		../../../6.6.3/mingw_64/include/QtCore/QStringList \
+		../../../6.6.3/mingw_64/include/QtCore/QDir \
+		../../../6.6.3/mingw_64/include/QtCore/qdir.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfile.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfiledevice.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfileinfo.h \
+		../../../6.6.3/mingw_64/include/QtCore/qdatetime.h \
+		../../../6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../6.6.3/mingw_64/include/QtCore/qtimezone.h \
 		../../../6.6.3/mingw_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mytcpserver.o mytcpserver.cpp
 
@@ -1215,10 +1259,20 @@ release/mytcpsocket.o: mytcpsocket.cpp mytcpsocket.h \
 		../../../6.6.3/mingw_64/include/QtSql/QSqlQuery \
 		../../../6.6.3/mingw_64/include/QtSql/qsqlquery.h \
 		../../../6.6.3/mingw_64/include/QtCore/QStringList \
+		../../../6.6.3/mingw_64/include/QtCore/QDir \
+		../../../6.6.3/mingw_64/include/QtCore/qdir.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfile.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfiledevice.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfileinfo.h \
+		../../../6.6.3/mingw_64/include/QtCore/qdatetime.h \
+		../../../6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../6.6.3/mingw_64/include/QtCore/qtimezone.h \
 		mytcpserver.h \
 		../../../6.6.3/mingw_64/include/QtNetwork/QTcpServer \
 		../../../6.6.3/mingw_64/include/QtNetwork/qtcpserver.h \
-		../../../6.6.3/mingw_64/include/QtCore/QList
+		../../../6.6.3/mingw_64/include/QtCore/QList \
+		../../../6.6.3/mingw_64/include/QtCore/QFileInfoList
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mytcpsocket.o mytcpsocket.cpp
 
 release/opedb.o: opedb.cpp opedb.h \
@@ -1585,30 +1639,16 @@ release/tcpserver.o: tcpserver.cpp tcpserver.h \
 		../../../6.6.3/mingw_64/include/QtSql/QSqlQuery \
 		../../../6.6.3/mingw_64/include/QtSql/qsqlquery.h \
 		../../../6.6.3/mingw_64/include/QtCore/QStringList \
-		ui_tcpserver.h \
-		../../../6.6.3/mingw_64/include/QtCore/QVariant \
-		../../../6.6.3/mingw_64/include/QtWidgets/QApplication \
-		../../../6.6.3/mingw_64/include/QtWidgets/qapplication.h \
-		../../../6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
-		../../../6.6.3/mingw_64/include/QtCore/qeventloop.h \
-		../../../6.6.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfuture.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfutureinterface.h \
-		../../../6.6.3/mingw_64/include/QtCore/qmutex.h \
-		../../../6.6.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		../../../6.6.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		../../../6.6.3/mingw_64/include/QtCore/qtsan_impl.h \
-		../../../6.6.3/mingw_64/include/QtCore/qresultstore.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfuture_impl.h \
-		../../../6.6.3/mingw_64/include/QtCore/qthreadpool.h \
-		../../../6.6.3/mingw_64/include/QtCore/qthread.h \
-		../../../6.6.3/mingw_64/include/QtCore/qrunnable.h \
-		../../../6.6.3/mingw_64/include/QtCore/qexception.h \
-		../../../6.6.3/mingw_64/include/QtCore/qpromise.h \
-		../../../6.6.3/mingw_64/include/QtGui/qguiapplication.h \
-		../../../6.6.3/mingw_64/include/QtGui/qinputmethod.h \
+		../../../6.6.3/mingw_64/include/QtCore/QDir \
+		../../../6.6.3/mingw_64/include/QtCore/qdir.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfile.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfiledevice.h \
+		../../../6.6.3/mingw_64/include/QtCore/qfileinfo.h \
+		../../../6.6.3/mingw_64/include/QtCore/qdatetime.h \
+		../../../6.6.3/mingw_64/include/QtCore/qcalendar.h \
 		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
-		../../../6.6.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		../../../6.6.3/mingw_64/include/QtCore/qtimezone.h \
+		ui_tcpserver.h \
 		../../../6.6.3/mingw_64/include/QtCore/QByteArray \
 		../../../6.6.3/mingw_64/include/QtCore/QDebug \
 		../../../6.6.3/mingw_64/include/QtWidgets/QMessageBox \
@@ -1616,9 +1656,7 @@ release/tcpserver.o: tcpserver.cpp tcpserver.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qdialog.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		../../../6.6.3/mingw_64/include/QtNetwork/QHostAddress \
-		../../../6.6.3/mingw_64/include/QtCore/QFile \
-		../../../6.6.3/mingw_64/include/QtCore/qfile.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfiledevice.h
+		../../../6.6.3/mingw_64/include/QtCore/QFile
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\tcpserver.o tcpserver.cpp
 
 release/qrc_config.o: release/qrc_config.cpp 

@@ -408,6 +408,7 @@ Makefile: TCPClient.pro ../../../6.6.3/mingw_64/mkspecs/win32-g++/qmake.conf ../
 		../../../6.6.3/mingw_64/lib/Qt6Core.prl \
 		../../../6.6.3/mingw_64/lib/Qt6EntryPoint.prl \
 		../../../6.6.3/mingw_64/mkspecs/features/build_pass.prf \
+		FileType.qrc \
 		config.qrc
 	$(QMAKE) -o Makefile TCPClient.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 ../../../6.6.3/mingw_64/mkspecs/features/spec_pre.prf:
@@ -748,6 +749,7 @@ TCPClient.pro:
 ../../../6.6.3/mingw_64/lib/Qt6Core.prl:
 ../../../6.6.3/mingw_64/lib/Qt6EntryPoint.prl:
 ../../../6.6.3/mingw_64/mkspecs/features/build_pass.prf:
+FileType.qrc:
 config.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile TCPClient.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

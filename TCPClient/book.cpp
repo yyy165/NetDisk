@@ -40,6 +40,39 @@ Book::Book(QWidget *parent)
 
     connect(m_pCreateDirPB, SIGNAL(clicked(bool))
             , this, SLOT(createDir()));
+    connect(m_pFlushDirPB, SIGNAL(clicked(bool))
+            , this, SLOT(flushFile()));
+    connect(m_pDelDirPB, SIGNAL(clicked(bool))
+            , this, SLOT(delDir()));
+    connect(m_pRenamePB, SIGNAL(clicked(bool))
+            , this, SLOT(renameFile()));
+}
+
+void Book::updateFileList(const PDU *pdu)
+{
+    if(pdu == NULL)
+    {
+        return;
+    }
+    m_pBookListLW->clear();
+    FileInfo *pFileInfo = NULL;
+    int iCount = pdu->uiMsgLen/sizeof(FileInfo);
+    for(int i = 0;i < iCount;i++)
+    {
+        pFileInfo = (FileInfo*)(pdu->caMsg) + i;
+        qDebug() << pFileInfo->caFileName << pFileInfo->iFileType;
+        QListWidgetItem *pItem = new QListWidgetItem;
+        if(pFileInfo->iFileType == 0)
+        {
+            pItem->setIcon(QIcon(QPixmap(":/map/dir.png")));
+        }
+        else if(pFileInfo->iFileType == 1)
+        {
+            pItem->setIcon(QIcon(QPixmap(":/map/reg.jfif")));
+        }
+        pItem->setText(pFileInfo->caFileName);
+        m_pBookListLW->addItem(pItem);
+    }
 }
 
 void Book::createDir()
@@ -68,5 +101,67 @@ void Book::createDir()
             pdu = NULL;
         }
 
+    }
+}
+
+void Book::flushFile()
+{
+    QString strCurPath = TcpClient::getinstance().getCurPath();
+    PDU *pdu = mkPDU(strCurPath.size() + 1);
+    pdu->uiMsgType = ENUM_MSG_TYPE_FLUSH_DIR_REQUEST;
+    strncpy((char*)pdu->caMsg, strCurPath.toStdString().c_str(), strCurPath.size());
+    TcpClient::getinstance().getTcpSocket().write((char*)pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu = NULL;
+}
+
+void Book::delDir()
+{
+    QString strCurPath = TcpClient::getinstance().getCurPath();
+    QListWidgetItem *pItem = m_pBookListLW->currentItem();
+    if(pItem == NULL)
+    {
+        QMessageBox::warning(this, "删除目录", "请选择要删除的目录");
+    }
+    else
+    {
+        QString dirName = pItem->text();
+        PDU *pdu = mkPDU(strCurPath.size() + 1);
+        pdu->uiMsgType = ENUM_MSG_TYPE_DELETE_DIR_REQUEST;
+        strncpy(pdu->caData, dirName.toStdString().c_str(), dirName.size());
+        memcpy(pdu->caMsg, strCurPath.toStdString().c_str(), strCurPath.size());
+        TcpClient::getinstance().getTcpSocket().write((char*)pdu, pdu->uiPDULen);
+        free(pdu);
+        pdu = NULL;
+    }
+}
+
+void Book::renameFile()
+{
+    QString strCurPath = TcpClient::getinstance().getCurPath();
+    QListWidgetItem *pItem = m_pBookListLW->currentItem();
+    if(pItem == NULL)
+    {
+        QMessageBox::warning(this, "重命名文件", "请选择要重命名的文件");
+    }
+    else
+    {
+        QString strOldName = pItem->text();
+        if(strOldName.isEmpty())
+        {
+            QMessageBox::warning(this, "重命名文件", "重命名不能为空");
+        }
+        else
+        {
+            QString strNewName = QInputDialog::getText(this, "重命名文件", "请输入新名称");
+            PDU *pdu = mkPDU(strCurPath.size() + 1);
+            pdu->uiMsgType = ENUM_MSG_TYPE_RENAME_FILE_REQUEST;
+            strncpy(pdu->caData, strOldName.toStdString().c_str(), strOldName.size());
+            strncpy(pdu->caData + 32, strNewName.toStdString().c_str(), strNewName.size());
+            memcpy(pdu->caMsg, strCurPath.toStdString().c_str(), strCurPath.size());
+            TcpClient::getinstance().getTcpSocket().write((char*)pdu, pdu->uiPDULen);
+            free(pdu);
+            pdu = NULL;
+        }
     }
 }

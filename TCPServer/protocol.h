@@ -22,6 +22,10 @@ typedef unsigned int uint;
 #define DIR_NO_EXIST "文件夹不存在"
 #define FILE_NAME_EXIST "文件名已存在"
 #define CREATE_DIR_OK "创建成功"
+#define DEL_DIR_OK "删除文件夹成功"
+#define DEL_DIR_FAIL "删除文件夹失败 : 是文件"
+#define RENAME_FILE_OK "重命名文件成功"
+#define RENAME_FILE_FAIL "重命名文件失败"
 
 enum ENUM_MSG_TYPE
 {
@@ -61,9 +65,24 @@ enum ENUM_MSG_TYPE
 
     ENUM_MSG_TYPE_CREATE_DIR_REQUEST,   //创建文件夹请求
     ENUM_MSG_TYPE_CREATE_DIR_RESPOND,   //创建文件夹回复
+
+    ENUM_MSG_TYPE_FLUSH_DIR_REQUEST,   //刷新文件夹请求
+    ENUM_MSG_TYPE_FLUSH_DIR_RESPOND,   //刷新文件夹回复
+
+    ENUM_MSG_TYPE_DELETE_DIR_REQUEST,   //删除文件夹请求
+    ENUM_MSG_TYPE_DELETE_DIR_RESPOND,   //删除文件夹回复
+
+    ENUM_MSG_TYPE_RENAME_FILE_REQUEST,   //重命名文件请求
+    ENUM_MSG_TYPE_RENAME_FILE_RESPOND,   //重命名文件回复
     // ENUM_MSG_TYPE_REQUEST,
     // ENUM_MSG_TYPE_RESPOND,
     ENUM_MSG_TYPE_MAX = 0x00ffffff
+};
+
+struct FileInfo
+{
+    char caFileName[32];    //文件名
+    int iFileType;          //文件类型
 };
 
 struct PDU
