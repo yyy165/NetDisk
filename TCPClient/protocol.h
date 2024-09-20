@@ -24,9 +24,10 @@ typedef unsigned int uint;
 #define FILE_NAME_EXIST "文件名已存在"
 #define CREATE_DIR_OK "创建成功"
 #define DEL_DIR_OK "删除文件夹成功"
-#define DEL_DIR_FAIL "删除文件夹失败 : 是文件"
+#define DEL_DIR_FAIL "删除文件夹失败 : 是常规文件"
 #define RENAME_FILE_OK "重命名文件成功"
 #define RENAME_FILE_FAIL "重命名文件失败"
+#define ENTER_DIR_FAIL "进入文件夹失败 : 不可进入常规文件"
 
 enum ENUM_MSG_TYPE
 {
@@ -75,6 +76,9 @@ enum ENUM_MSG_TYPE
 
     ENUM_MSG_TYPE_RENAME_FILE_REQUEST,   //重命名文件请求
     ENUM_MSG_TYPE_RENAME_FILE_RESPOND,   //重命名文件回复
+
+    ENUM_MSG_TYPE_ENTER_DIR_REQUEST,   //进入文件夹请求
+    ENUM_MSG_TYPE_ENTER_DIR_RESPOND,   //进入文件夹回复
 
     ENUM_MSG_TYPE_MAX = 0x00ffffff
 };

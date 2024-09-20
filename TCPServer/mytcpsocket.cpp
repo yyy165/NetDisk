@@ -386,6 +386,59 @@ void MyTcpSocket::recvMsg()
         respdu = NULL;
         break;
     }
+    case ENUM_MSG_TYPE_ENTER_DIR_REQUEST:
+    {
+        char caDirName[32] = {'\0'};
+        char *caCurPath = new char[pdu->uiMsgLen];
+        strncpy(caDirName, pdu->caData, 32);
+        memcpy(caCurPath, pdu->caMsg, pdu->uiMsgLen);
+        QString strPath = QString("%1/%2").arg(caCurPath).arg(caDirName);
+
+        QFileInfo fileInfo(strPath);
+        PDU *respdu = NULL;
+        if(fileInfo.isDir())
+        {
+            QDir dir(strPath);
+            QFileInfoList fileInfoList =  dir.entryInfoList();
+            int iFileCount = fileInfoList.size();
+            respdu = mkPDU(sizeof(FileInfo) * (iFileCount));
+            respdu->uiMsgType = ENUM_MSG_TYPE_FLUSH_DIR_RESPOND;
+            FileInfo *pFileInfo = NULL;
+            QString strFileName;
+            for(int i = 0;i < iFileCount;i++)
+            {
+                // if(QString(".") == fileInfoList[i].fileName()
+                // ||QString("..") == fileInfoList[i].fileName())
+                // {
+                //     continue;
+                // }
+                pFileInfo = (FileInfo*)(respdu->caMsg) + i;
+                strFileName = fileInfoList[i].fileName();
+                memcpy(pFileInfo->caFileName, strFileName.toStdString().c_str(), strFileName.size());
+                if(fileInfoList[i].isDir())
+                {
+                    pFileInfo->iFileType = 0;
+                }
+                else if(fileInfoList[i].isFile())
+                {
+                    pFileInfo->iFileType = 1;
+                }
+            }
+            write((char*)respdu, respdu->uiPDULen);
+            free(respdu);
+            respdu = NULL;
+        }
+        else if(fileInfo.isFile())
+        {
+            respdu = mkPDU(0);
+            respdu->uiMsgType = ENUM_MSG_TYPE_ENTER_DIR_RESPOND;
+            strcpy(respdu->caData, ENTER_DIR_FAIL);
+            write((char*)respdu, respdu->uiPDULen);
+            free(respdu);
+            respdu = NULL;
+        }
+        break;
+    }
     default:
         break;
     }

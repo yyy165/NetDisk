@@ -6,6 +6,8 @@
 Book::Book(QWidget *parent)
     : QWidget{parent}
 {
+    m_strEnterDir.clear();
+
     m_pBookListLW = new QListWidget;
     m_pTurnBackPB = new QPushButton("返回");
     m_pCreateDirPB = new QPushButton("创建文件夹");
@@ -46,6 +48,10 @@ Book::Book(QWidget *parent)
             , this, SLOT(delDir()));
     connect(m_pRenamePB, SIGNAL(clicked(bool))
             , this, SLOT(renameFile()));
+    connect(m_pBookListLW, SIGNAL(doubleClicked(QModelIndex))
+            , this, SLOT(enterDir(QModelIndex)));
+    connect(m_pTurnBackPB, SIGNAL(clicked(bool))
+            , this, SLOT(returnPre()));
 }
 
 void Book::updateFileList(const PDU *pdu)
@@ -73,6 +79,16 @@ void Book::updateFileList(const PDU *pdu)
         pItem->setText(pFileInfo->caFileName);
         m_pBookListLW->addItem(pItem);
     }
+}
+
+void Book::clearEnterName()
+{
+    m_strEnterDir.clear();
+}
+
+QString Book::enterDir()
+{
+    return m_strEnterDir;
 }
 
 void Book::createDir()
@@ -163,5 +179,48 @@ void Book::renameFile()
             free(pdu);
             pdu = NULL;
         }
+    }
+}
+
+void Book::enterDir(const QModelIndex &index)
+{
+    QString strDirName = index.data().toString();
+    m_strEnterDir = strDirName;
+    QString strCurPath = TcpClient::getinstance().getCurPath();
+    QString strRootPath = "./" + TcpClient::getinstance().getOnlineName();
+    if(strCurPath == strRootPath)
+    {
+        if(m_pBookListLW->currentItem()->text() == "..")
+        {
+            QMessageBox::warning(this, "返回", "返回失败:已经在根目录");
+            return;
+        }
+    }
+    PDU *pdu = mkPDU(strCurPath.size() + 1);
+    pdu->uiMsgType = ENUM_MSG_TYPE_ENTER_DIR_REQUEST;
+    strncpy(pdu->caData, strDirName.toStdString().c_str(), strDirName.size());
+    memcpy(pdu->caMsg, strCurPath.toStdString().c_str(), strCurPath.size());
+    TcpClient::getinstance().getTcpSocket().write((char*)pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu = NULL;
+}
+
+void Book::returnPre()
+{
+    QString strCurPath = TcpClient::getinstance().getCurPath();
+    QString strRootPath = "./" + TcpClient::getinstance().getOnlineName();
+    if(strCurPath == strRootPath)
+    {
+        QMessageBox::warning(this, "返回", "返回失败:已经在根目录");
+    }
+    else
+    {
+        int index = strCurPath.lastIndexOf('/');
+        strCurPath.remove(index, strCurPath.size() - index);
+        TcpClient::getinstance().setCurPath(strCurPath);
+
+        clearEnterName();
+
+        flushFile();
     }
 }

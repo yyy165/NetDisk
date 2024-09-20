@@ -25,6 +25,7 @@ public:
     QTcpSocket &getTcpSocket();
     QString getOnlineName();
     QString getCurPath();
+    void setCurPath(QString strCurPath);
 
 public slots:
     void showConnect();

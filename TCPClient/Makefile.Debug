@@ -2122,58 +2122,6 @@ debug/online.o: online.cpp online.h \
 		../../../6.6.3/mingw_64/include/QtCore/qnativeinterface.h \
 		protocol.h \
 		ui_online.h \
-		../../../6.6.3/mingw_64/include/QtCore/QVariant \
-		../../../6.6.3/mingw_64/include/QtWidgets/QApplication \
-		../../../6.6.3/mingw_64/include/QtWidgets/qapplication.h \
-		../../../6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
-		../../../6.6.3/mingw_64/include/QtCore/qeventloop.h \
-		../../../6.6.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfuture.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfutureinterface.h \
-		../../../6.6.3/mingw_64/include/QtCore/qmutex.h \
-		../../../6.6.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		../../../6.6.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		../../../6.6.3/mingw_64/include/QtCore/qtsan_impl.h \
-		../../../6.6.3/mingw_64/include/QtCore/qresultstore.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfuture_impl.h \
-		../../../6.6.3/mingw_64/include/QtCore/qthreadpool.h \
-		../../../6.6.3/mingw_64/include/QtCore/qthread.h \
-		../../../6.6.3/mingw_64/include/QtCore/qrunnable.h \
-		../../../6.6.3/mingw_64/include/QtCore/qexception.h \
-		../../../6.6.3/mingw_64/include/QtCore/qpromise.h \
-		../../../6.6.3/mingw_64/include/QtGui/qguiapplication.h \
-		../../../6.6.3/mingw_64/include/QtGui/qinputmethod.h \
-		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
-		../../../6.6.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QHBoxLayout \
-		../../../6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlayout.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QListWidget \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlistwidget.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlistview.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qabstractitemview.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qframe.h \
-		../../../6.6.3/mingw_64/include/QtCore/qabstractitemmodel.h \
-		../../../6.6.3/mingw_64/include/QtCore/qitemselectionmodel.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qstyleoption.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
-		../../../6.6.3/mingw_64/include/QtGui/qvalidator.h \
-		../../../6.6.3/mingw_64/include/QtCore/qregularexpression.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qslider.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qabstractslider.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qstyle.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qtabbar.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qtabwidget.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qrubberband.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QPushButton \
-		../../../6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QSpacerItem \
-		../../../6.6.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		tcpclient.h \
 		../../../6.6.3/mingw_64/include/QtCore/QFile \
 		../../../6.6.3/mingw_64/include/QtCore/qfile.h \
@@ -2565,50 +2513,7 @@ debug/privatechat.o: privatechat.cpp privatechat.h \
 		../../../6.6.3/mingw_64/include/QtGui/QTransform \
 		../../../6.6.3/mingw_64/include/QtCore/qnativeinterface.h \
 		protocol.h \
-		ui_privatechat.h \
-		../../../6.6.3/mingw_64/include/QtCore/QVariant \
-		../../../6.6.3/mingw_64/include/QtWidgets/QApplication \
-		../../../6.6.3/mingw_64/include/QtWidgets/qapplication.h \
-		../../../6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
-		../../../6.6.3/mingw_64/include/QtCore/qeventloop.h \
-		../../../6.6.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfuture.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfutureinterface.h \
-		../../../6.6.3/mingw_64/include/QtCore/qmutex.h \
-		../../../6.6.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		../../../6.6.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		../../../6.6.3/mingw_64/include/QtCore/qtsan_impl.h \
-		../../../6.6.3/mingw_64/include/QtCore/qresultstore.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfuture_impl.h \
-		../../../6.6.3/mingw_64/include/QtCore/qthreadpool.h \
-		../../../6.6.3/mingw_64/include/QtCore/qthread.h \
-		../../../6.6.3/mingw_64/include/QtCore/qrunnable.h \
-		../../../6.6.3/mingw_64/include/QtCore/qexception.h \
-		../../../6.6.3/mingw_64/include/QtCore/qpromise.h \
-		../../../6.6.3/mingw_64/include/QtGui/qguiapplication.h \
-		../../../6.6.3/mingw_64/include/QtGui/qinputmethod.h \
-		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
-		../../../6.6.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QHBoxLayout \
-		../../../6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlayout.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QLineEdit \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlineedit.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qframe.h \
-		../../../6.6.3/mingw_64/include/QtGui/qtextcursor.h \
-		../../../6.6.3/mingw_64/include/QtGui/qtextdocument.h \
-		../../../6.6.3/mingw_64/include/QtGui/qtextformat.h \
-		../../../6.6.3/mingw_64/include/QtGui/qpen.h \
-		../../../6.6.3/mingw_64/include/QtGui/qtextoption.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QPushButton \
-		../../../6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QTextEdit \
-		../../../6.6.3/mingw_64/include/QtWidgets/qtextedit.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QVBoxLayout
+		ui_privatechat.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\privatechat.o privatechat.cpp
 
 debug/protocol.o: protocol.cpp protocol.h
@@ -2789,60 +2694,18 @@ debug/tcpclient.o: tcpclient.cpp tcpclient.h \
 		../../../6.6.3/mingw_64/include/QtNetwork/qhostaddress.h \
 		protocol.h \
 		ui_tcpclient.h \
-		../../../6.6.3/mingw_64/include/QtCore/QVariant \
-		../../../6.6.3/mingw_64/include/QtWidgets/QApplication \
-		../../../6.6.3/mingw_64/include/QtWidgets/qapplication.h \
-		../../../6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
-		../../../6.6.3/mingw_64/include/QtCore/qeventloop.h \
-		../../../6.6.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfuture.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfutureinterface.h \
-		../../../6.6.3/mingw_64/include/QtCore/qmutex.h \
-		../../../6.6.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		../../../6.6.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		../../../6.6.3/mingw_64/include/QtCore/qtsan_impl.h \
-		../../../6.6.3/mingw_64/include/QtCore/qresultstore.h \
-		../../../6.6.3/mingw_64/include/QtCore/qfuture_impl.h \
-		../../../6.6.3/mingw_64/include/QtCore/qthreadpool.h \
-		../../../6.6.3/mingw_64/include/QtCore/qthread.h \
-		../../../6.6.3/mingw_64/include/QtCore/qrunnable.h \
-		../../../6.6.3/mingw_64/include/QtCore/qexception.h \
-		../../../6.6.3/mingw_64/include/QtCore/qpromise.h \
-		../../../6.6.3/mingw_64/include/QtGui/qguiapplication.h \
-		../../../6.6.3/mingw_64/include/QtGui/qinputmethod.h \
-		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
-		../../../6.6.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QHBoxLayout \
-		../../../6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlayout.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QLabel \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlabel.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qframe.h \
-		../../../6.6.3/mingw_64/include/QtGui/qpicture.h \
-		../../../6.6.3/mingw_64/include/QtGui/qtextdocument.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QLineEdit \
-		../../../6.6.3/mingw_64/include/QtWidgets/qlineedit.h \
-		../../../6.6.3/mingw_64/include/QtGui/qtextcursor.h \
-		../../../6.6.3/mingw_64/include/QtGui/qtextformat.h \
-		../../../6.6.3/mingw_64/include/QtGui/qpen.h \
-		../../../6.6.3/mingw_64/include/QtGui/qtextoption.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QPushButton \
-		../../../6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		../../../6.6.3/mingw_64/include/QtWidgets/QSpacerItem \
-		../../../6.6.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		opewidget.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/QListWidget \
 		../../../6.6.3/mingw_64/include/QtWidgets/qlistwidget.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qlistview.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qabstractitemview.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qframe.h \
 		../../../6.6.3/mingw_64/include/QtCore/qabstractitemmodel.h \
 		../../../6.6.3/mingw_64/include/QtCore/qitemselectionmodel.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		../../../6.6.3/mingw_64/include/QtCore/qlocale.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
 		../../../6.6.3/mingw_64/include/QtGui/qvalidator.h \
 		../../../6.6.3/mingw_64/include/QtCore/qregularexpression.h \
@@ -2855,6 +2718,22 @@ debug/tcpclient.o: tcpclient.cpp tcpclient.h \
 		friend.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/QTextEdit \
 		../../../6.6.3/mingw_64/include/QtWidgets/qtextedit.h \
+		../../../6.6.3/mingw_64/include/QtGui/qtextdocument.h \
+		../../../6.6.3/mingw_64/include/QtGui/qtextoption.h \
+		../../../6.6.3/mingw_64/include/QtGui/qtextcursor.h \
+		../../../6.6.3/mingw_64/include/QtGui/qtextformat.h \
+		../../../6.6.3/mingw_64/include/QtGui/qpen.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QLineEdit \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlineedit.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QPushButton \
+		../../../6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QVBoxLayout \
+		../../../6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlayout.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		../../../6.6.3/mingw_64/include/QtWidgets/QHBoxLayout \
 		online.h \
 		book.h \
 		../../../6.6.3/mingw_64/include/QtWidgets/QStackedWidget \
