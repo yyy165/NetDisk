@@ -12,6 +12,7 @@ Book::Book(QWidget *parent)
     m_strEnterDir.clear();
 
     m_pTimer = new QTimer;
+    m_pDownload = false;
 
     m_pBookListLW = new QListWidget;
     m_pTurnBackPB = new QPushButton("返回");
@@ -63,6 +64,8 @@ Book::Book(QWidget *parent)
             this, SLOT(uploadFileData()));
     connect(m_pDelFilePB, SIGNAL(clicked(bool)),
             this, SLOT(delFile()));
+    connect(m_pDownLoadPB, SIGNAL(clicked(bool)),
+            this, SLOT(downloadFile()));
 }
 
 void Book::updateFileList(const PDU *pdu)
@@ -100,6 +103,21 @@ void Book::clearEnterName()
 QString Book::enterDir()
 {
     return m_strEnterDir;
+}
+
+void Book::setDownloadStatus(bool status)
+{
+    m_pDownload = status;
+}
+
+bool Book::getDownLoadStatus()
+{
+    return m_pDownload;
+}
+
+QString Book::getSaveFilePath()
+{
+    return m_strSaveFilePath;
 }
 
 void Book::createDir()
@@ -296,7 +314,6 @@ void Book::uploadFileData()
 
 void Book::delFile()
 {
-    qDebug() << "delFile";
     QString strCurPath = TcpClient::getinstance().getCurPath();
     QListWidgetItem *pItem = m_pBookListLW->currentItem();
     if(NULL == pItem)
@@ -312,4 +329,34 @@ void Book::delFile()
     TcpClient::getinstance().getTcpSocket().write((char*)pdu, pdu->uiPDULen);
     free(pdu);
     pdu = NULL;
+}
+
+void Book::downloadFile()
+{
+    QString strCurPath = TcpClient::getinstance().getCurPath();
+    QListWidgetItem *pItem = m_pBookListLW->currentItem();
+    if(NULL == pItem)
+    {
+        QMessageBox::warning(this, "下载文件", "请选择要下载的文件");
+        return ;
+    }
+    QString strSaveFilePath = QFileDialog::getSaveFileName();
+    if(strSaveFilePath.isEmpty())
+    {
+        QMessageBox::warning(this, "下载文件", "请选择保存位置");
+        m_strSaveFilePath.clear();
+    }
+    else
+    {
+        m_strSaveFilePath = strSaveFilePath;
+    }
+    QString fileName = pItem->text();
+    PDU *pdu = mkPDU(strCurPath.size() + 1);
+    pdu->uiMsgType = ENUM_MSG_TYPE_DOWNLOAD_FILE_REQUEST;
+    strncpy(pdu->caData, fileName.toStdString().c_str(), fileName.size());
+    memcpy((char*)pdu->caMsg, strCurPath.toStdString().c_str(), strCurPath.size());
+    TcpClient::getinstance().getTcpSocket().write((char*)pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu = NULL;
+
 }

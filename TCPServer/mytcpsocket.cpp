@@ -4,14 +4,19 @@
 #include "mytcpserver.h"
 #include <QFileInfoList>
 #include <QIODevice>
+#include <QTimer>
 
 MyTcpSocket::MyTcpSocket(QObject *parent)
     : QTcpSocket{parent}
 {
+    m_bUpload = false;
+    m_pTimer = new QTimer;
     connect(this, SIGNAL(readyRead())
             , this, SLOT(recvMsg()));
     connect(this, SIGNAL(disconnected())
             ,this, SLOT(clientOffline()));
+    connect(m_pTimer, SIGNAL(timeout())
+            ,this, SLOT(sendFileToClient()));
 }
 
 QString MyTcpSocket::getName()
@@ -499,6 +504,31 @@ void MyTcpSocket::recvMsg()
             respdu = NULL;
             break;
         }
+        case ENUM_MSG_TYPE_DOWNLOAD_FILE_REQUEST:
+        {
+            char caFileName[32] = {'\0'};
+            strcpy(caFileName, pdu->caData);
+            char *curPath = new char[pdu->uiMsgLen];
+            memcpy(curPath, pdu->caMsg, pdu->uiMsgLen);
+            QString strPath = QString("%1/%2").arg(curPath).arg(caFileName);
+            delete []curPath;
+            curPath = NULL;
+
+            QFileInfo fileInfo(strPath);
+            qint64 filesize = fileInfo.size();
+            PDU *respdu = mkPDU(0);
+            respdu->uiMsgType = ENUM_MSG_TYPE_DOWNLOAD_FILE_RESPOND;
+            sprintf(respdu->caData, "%s %lld", caFileName, filesize);
+            write((char*)respdu, respdu->uiPDULen);
+            free(respdu);
+            respdu = NULL;
+
+            m_file.setFileName(strPath);
+            m_file.open(QIODevice::ReadOnly);
+            m_pTimer->start(1000);
+
+            break;
+        }
         default:
             break;
         }
@@ -544,4 +574,31 @@ void MyTcpSocket::clientOffline()
 {
     OpeDB::getInstance().handleOffline(m_strName.toStdString().c_str());
     emit offline(this);
+}
+
+void MyTcpSocket::sendFileToClient()
+{
+    char *pData = new char[4096];
+    qint64 ret = 0;
+    while(true)
+    {
+        ret = m_file.read(pData, 4096);
+        if(ret > 0 && ret <= 4096)
+        {
+            write(pData, ret);
+        }
+        else if(ret == 0)
+        {
+            m_file.close();
+            break;
+        }
+        else if(ret < 0)
+        {
+            qDebug() << "发送文件内容给客户端过程中失败";
+            m_file.close();
+            break;
+        }
+    }
+    delete []pData;
+    pData = NULL;
 }

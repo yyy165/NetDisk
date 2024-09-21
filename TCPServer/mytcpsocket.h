@@ -20,6 +20,7 @@ signals:
 public slots:
     void recvMsg();
     void clientOffline();
+    void sendFileToClient();
 
 private:
     QString m_strName;

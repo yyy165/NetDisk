@@ -18,6 +18,12 @@ public:
     void updateFileList(const PDU *pdu);
     void clearEnterName();
     QString enterDir();
+    void setDownloadStatus(bool status);
+    bool getDownLoadStatus();
+    QString getSaveFilePath();
+
+    qint64 m_iTotal;
+    qint64 m_iRecved;
 
 signals:
 
@@ -31,6 +37,7 @@ public slots:
     void uploadFile();
     void uploadFileData();
     void delFile();
+    void downloadFile();
 
 private:
     QListWidget *m_pBookListLW;
@@ -49,6 +56,7 @@ private:
     QTimer *m_pTimer;
     QString m_strSaveFilePath;
     bool m_pDownload;
+
 
 };
 

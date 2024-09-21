@@ -49,5 +49,6 @@ private:
     QTcpSocket m_tcpSocket;
     QString onlineName;
     QString m_strCurPath;
+    QFile m_file;
 };
 #endif // TCPCLIENT_H
