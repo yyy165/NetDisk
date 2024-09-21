@@ -1,5 +1,4 @@
 本项目为借鉴海同网盘项目而衍生的网盘项目，学习链接：https://www.bilibili.com/video/BV1bR4y1774v
-是用于学习C++的入门项目。
 
 配置环境：
 QT，C++，数据库 sqlit3，Socket，多线程，网络编程
