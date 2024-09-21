@@ -529,6 +529,56 @@ void MyTcpSocket::recvMsg()
 
             break;
         }
+        case ENUM_MSG_TYPE_SHARE_FILE_REQUEST:
+        {
+            char caSendName[32] = {'\0'};
+            int num = 0;
+            sscanf(pdu->caData, "%s %d", caSendName, &num);
+            int size = num * 32;
+            PDU *retPdu = mkPDU(pdu->uiMsgLen - size);//下载文件的路径的大小
+            retPdu->uiMsgType = ENUM_MSG_TYPE_SHARE_FILE_NOTE;
+            strcpy(retPdu->caData, caSendName);
+            memcpy((char*)retPdu->caMsg, (char*)(pdu->caMsg) + size, pdu->uiMsgLen - size);
+            char caRecvName[32] = {'\0'};
+            for(int i = 0; i < num ; i++)
+            {
+                memcpy(caRecvName, (char*)(pdu->caMsg) + i * 32, 32);
+                qDebug() << "要转发给该好友文件:"
+                         <<caRecvName;
+                MyTcpServer::getInstance().resend(caRecvName, retPdu);
+            }
+            free(retPdu);
+            retPdu = NULL;
+            retPdu = mkPDU(0);
+            retPdu->uiMsgType = ENUM_MSG_TYPE_SHARE_FILE_RESPOND;
+            strcpy(retPdu->caData, "send share file msg ok");
+            write((char*)retPdu, retPdu->uiPDULen);
+            break;
+        }
+        case ENUM_MSG_TYPE_SHARE_FILE_NOTE_REQUEST:
+        {
+            QString strRecvPath = QString("./%1").arg(pdu->caData);
+            QString strShareFilePath = QString("%1").arg((char*)pdu->caMsg);
+            int index = strShareFilePath.lastIndexOf('/');
+            QString fileName = strShareFilePath.right(strShareFilePath.size() - index - 1);
+            strRecvPath = strRecvPath + "/" + fileName;
+            QFileInfo qFileInfo(strShareFilePath);
+            if(qFileInfo.isFile())
+            {
+                QFile::copy(strShareFilePath, strRecvPath);
+            }
+            else if(qFileInfo.isDir())
+            {
+                copyDir(strShareFilePath, strRecvPath);
+            }
+            PDU *retPdu = mkPDU(0);
+            retPdu->uiMsgLen = ENUM_MSG_TYPE_SHARE_FILE_NOTE_RESPOND;
+            strcpy(retPdu->caData, "copy file ok");
+            write((char*)retPdu, retPdu->uiPDULen);
+            free(retPdu);
+            retPdu = NULL;
+            break;
+        }
         default:
             break;
         }
@@ -601,4 +651,33 @@ void MyTcpSocket::sendFileToClient()
     }
     delete []pData;
     pData = NULL;
+}
+
+void MyTcpSocket::copyDir(QString sourceDir, QString targetDir)
+{
+    QDir dir;
+    dir.mkdir(targetDir);//创建目标文件夹，防止文件夹不存在
+    dir.setPath(sourceDir);
+    QFileInfoList fileInfoList = dir.entryInfoList();
+    QString sourceTemp;
+    QString targetTemp;
+    for(int i = 0; i < fileInfoList.size(); i++)
+    {
+        sourceTemp = sourceDir + "/" + fileInfoList.at(i).fileName();
+        targetTemp = targetDir + "/" + fileInfoList.at(i).fileName();
+        if(fileInfoList.at(i).isFile())
+        {
+            QFile::copy(sourceTemp, targetTemp);
+        }
+        else if(fileInfoList.at(i).isDir())
+        {
+            // 不复制 . 和 ..目录
+            if(QString(".") == fileInfoList.at(i).fileName()
+                || QString("..") == fileInfoList.at(i).fileName())
+            {
+                continue;
+            }
+            copyDir(sourceTemp, targetTemp);
+        }
+    }
 }

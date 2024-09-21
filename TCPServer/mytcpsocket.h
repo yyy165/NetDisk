@@ -21,6 +21,7 @@ public slots:
     void recvMsg();
     void clientOffline();
     void sendFileToClient();
+    void copyDir(QString sourceDir, QString targetDir);
 
 private:
     QString m_strName;

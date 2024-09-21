@@ -89,6 +89,11 @@ void Friend::updateGroupChat(PDU *pdu)
     m_pShowMsgTE->append(recvMsg);
 }
 
+QListWidget *Friend::getFriendList()
+{
+    return m_pFriendListWiget;
+}
+
 void Friend::flushFriend()
 {
     m_pFriendListWiget->clear();

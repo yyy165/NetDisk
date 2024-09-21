@@ -45,11 +45,14 @@ constexpr auto qt_meta_stringdata_CLASSMyTcpSocketENDCLASS = QtMocHelpers::strin
     "mysocket",
     "recvMsg",
     "clientOffline",
-    "sendFileToClient"
+    "sendFileToClient",
+    "copyDir",
+    "sourceDir",
+    "targetDir"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMyTcpSocketENDCLASS_t {
-    uint offsetsAndSizes[16];
+    uint offsetsAndSizes[22];
     char stringdata0[12];
     char stringdata1[8];
     char stringdata2[1];
@@ -58,6 +61,9 @@ struct qt_meta_stringdata_CLASSMyTcpSocketENDCLASS_t {
     char stringdata5[8];
     char stringdata6[14];
     char stringdata7[17];
+    char stringdata8[8];
+    char stringdata9[10];
+    char stringdata10[10];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMyTcpSocketENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -70,7 +76,10 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMyTcpSocketENDCLASS_t qt_meta_s
         QT_MOC_LITERAL(34, 8),  // "mysocket"
         QT_MOC_LITERAL(43, 7),  // "recvMsg"
         QT_MOC_LITERAL(51, 13),  // "clientOffline"
-        QT_MOC_LITERAL(65, 16)   // "sendFileToClient"
+        QT_MOC_LITERAL(65, 16),  // "sendFileToClient"
+        QT_MOC_LITERAL(82, 7),  // "copyDir"
+        QT_MOC_LITERAL(90, 9),  // "sourceDir"
+        QT_MOC_LITERAL(100, 9)   // "targetDir"
     },
     "MyTcpSocket",
     "offline",
@@ -79,7 +88,10 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMyTcpSocketENDCLASS_t qt_meta_s
     "mysocket",
     "recvMsg",
     "clientOffline",
-    "sendFileToClient"
+    "sendFileToClient",
+    "copyDir",
+    "sourceDir",
+    "targetDir"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -91,7 +103,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMyTcpSocketENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -99,12 +111,13 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMyTcpSocketENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   38,    2, 0x06,    1 /* Public */,
+       1,    1,   44,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    0,   41,    2, 0x0a,    3 /* Public */,
-       6,    0,   42,    2, 0x0a,    4 /* Public */,
-       7,    0,   43,    2, 0x0a,    5 /* Public */,
+       5,    0,   47,    2, 0x0a,    3 /* Public */,
+       6,    0,   48,    2, 0x0a,    4 /* Public */,
+       7,    0,   49,    2, 0x0a,    5 /* Public */,
+       8,    2,   50,    2, 0x0a,    6 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -113,6 +126,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMyTcpSocketENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    9,   10,
 
        0        // eod
 };
@@ -134,7 +148,11 @@ Q_CONSTINIT const QMetaObject MyTcpSocket::staticMetaObject = { {
         // method 'clientOffline'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'sendFileToClient'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'copyDir'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
 } };
@@ -149,6 +167,7 @@ void MyTcpSocket::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 1: _t->recvMsg(); break;
         case 2: _t->clientOffline(); break;
         case 3: _t->sendFileToClient(); break;
+        case 4: _t->copyDir((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -193,13 +212,13 @@ int MyTcpSocket::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

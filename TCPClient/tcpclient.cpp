@@ -272,6 +272,37 @@ void TcpClient::recvMsg()
             }
             break;
         }
+        case ENUM_MSG_TYPE_SHARE_FILE_RESPOND:
+        {
+            QMessageBox::information(this, "分享文件", pdu->caData);
+            break;
+        }
+        case ENUM_MSG_TYPE_SHARE_FILE_NOTE:
+        {
+            qDebug() << "开始准备接受文件";
+            char *pPath = new char[pdu->uiMsgLen];
+            memcpy(pPath, (char*)pdu->caMsg, pdu->uiMsgLen);
+            // aa/bb/cc/a.txt
+            qDebug() << pPath;
+            char *pos = strrchr(pPath, '/'); //找到最后一个 / 出现的位置
+            qDebug() << pos;
+            if(NULL != pos)
+            {
+                pos++; // 向右移动一位，因为 / 这个字符我们不需要，只需要文件名称，即a.txt
+                QString strNote = QString("%1 share file -> %2\n do you accecpt").arg(pdu->caData).arg(pos);
+                int ret = QMessageBox::question(this, "共享文件", strNote);
+                if(QMessageBox::Yes == ret)
+                {
+                    PDU *retPdu = mkPDU(pdu->uiMsgLen);
+                    retPdu->uiMsgType = ENUM_MSG_TYPE_SHARE_FILE_NOTE_REQUEST;
+                    memcpy(retPdu->caMsg, pdu->caMsg, pdu->uiMsgLen);
+                    QString strName = TcpClient::getinstance().getOnlineName();
+                    strcpy(retPdu->caData, strName.toStdString().c_str());
+                    m_tcpSocket.write((char*)retPdu,retPdu->uiPDULen);
+                }
+            }
+            break;
+        }
         default:
             break;
         }

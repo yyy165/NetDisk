@@ -21,9 +21,12 @@ public:
     void setDownloadStatus(bool status);
     bool getDownLoadStatus();
     QString getSaveFilePath();
+    void updateLocalDownloadFileName();//更新本地下载文件的文件名称
+    QString getShareFileName();
 
     qint64 m_iTotal;
     qint64 m_iRecved;
+    QFile m_pFile;//用于本地下载文件使用
 
 signals:
 
@@ -38,6 +41,7 @@ public slots:
     void uploadFileData();
     void delFile();
     void downloadFile();
+    void shareFile();
 
 private:
     QListWidget *m_pBookListLW;
@@ -56,6 +60,7 @@ private:
     QTimer *m_pTimer;
     QString m_strSaveFilePath;
     bool m_pDownload;
+    QString m_shareFileName;
 
 
 };
