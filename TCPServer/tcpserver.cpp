@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QHostAddress>
 #include <QFile>
+#include <QIODevice>
 
 TcpServer::TcpServer(QWidget *parent)
     : QWidget(parent)

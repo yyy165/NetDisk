@@ -2,11 +2,16 @@
 #include "tcpclient.h"
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QFileDialog>
+#include <QTimer>
+#include <QIODevice>
 
 Book::Book(QWidget *parent)
     : QWidget{parent}
 {
     m_strEnterDir.clear();
+
+    m_pTimer = new QTimer;
 
     m_pBookListLW = new QListWidget;
     m_pTurnBackPB = new QPushButton("返回");
@@ -52,6 +57,12 @@ Book::Book(QWidget *parent)
             , this, SLOT(enterDir(QModelIndex)));
     connect(m_pTurnBackPB, SIGNAL(clicked(bool))
             , this, SLOT(returnPre()));
+    connect(m_pUpLoadPB, SIGNAL(clicked(bool)),
+            this, SLOT(uploadFile()));
+    connect(m_pTimer, SIGNAL(timeout()),
+            this, SLOT(uploadFileData()));
+    connect(m_pDelFilePB, SIGNAL(clicked(bool)),
+            this, SLOT(delFile()));
 }
 
 void Book::updateFileList(const PDU *pdu)
@@ -223,4 +234,82 @@ void Book::returnPre()
 
         flushFile();
     }
+}
+
+void Book::uploadFile()
+{
+    QString strCurPath = TcpClient::getinstance().getCurPath();
+    m_strUploadFilePath = QFileDialog::getOpenFileName();
+    if(m_strUploadFilePath.isEmpty())
+    {
+        QMessageBox::warning(this, "上传文件", "上传文件名称不能为空");
+        return ;
+    }
+    int idx = m_strUploadFilePath.lastIndexOf('/');
+    QString fileName = m_strUploadFilePath.right(m_strUploadFilePath.size() - idx - 1);
+    QFile file(m_strUploadFilePath);
+    qint64 fileSize = file.size();
+    PDU *pdu = mkPDU(strCurPath.size() + 1);
+    pdu->uiMsgType = ENUM_MSG_TYPE_UPLOAD_FILE_REQUEST;
+    memcpy((char*)pdu->caMsg, strCurPath.toStdString().c_str(), strCurPath.size());
+    sprintf(pdu->caData, "%s %lld", fileName.toStdString().c_str(), fileSize);
+    qDebug() << pdu->caData;
+    qDebug() << (char*)pdu->caMsg;
+    TcpClient::getinstance().getTcpSocket().write((char*)pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu = NULL;
+    m_pTimer->start(1000);
+}
+
+void Book::uploadFileData()
+{
+    m_pTimer->stop();
+    QFile file(m_strUploadFilePath);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        QMessageBox::warning(this, "上传文件", "打开文件失败");
+        return;
+    }
+    char *pBuffer = new char[4096];
+    qint64 ret = 0;
+    while(true)
+    {
+        ret = file.read(pBuffer, 4096);
+        if(ret > 0 && ret <= 4096)
+        {
+            TcpClient::getinstance().getTcpSocket().write(pBuffer, ret);
+        }
+        else if(ret == 0)
+        {
+            break;
+        }
+        else
+        {
+            QMessageBox::warning(this, "上传文件", "上传文件失败：读取文件内容失败");
+            break;
+        }
+    }
+    file.close();
+    delete []pBuffer;
+    pBuffer = NULL;
+}
+
+void Book::delFile()
+{
+    qDebug() << "delFile";
+    QString strCurPath = TcpClient::getinstance().getCurPath();
+    QListWidgetItem *pItem = m_pBookListLW->currentItem();
+    if(NULL == pItem)
+    {
+        QMessageBox::warning(this, "删除文件", "请选择要删除的文件");
+        return ;
+    }
+    QString strDelName = pItem->text();
+    PDU *pdu = mkPDU(strCurPath.size() + 1);
+    pdu->uiMsgType = ENUM_MSG_TYPE_DELETE_FILE_REQUEST;
+    strncpy(pdu->caData, strDelName.toStdString().c_str(), strDelName.size());
+    memcpy((char*)pdu->caMsg, strCurPath.toStdString().c_str(), strCurPath.size());
+    TcpClient::getinstance().getTcpSocket().write((char*)pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu = NULL;
 }

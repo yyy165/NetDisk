@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QHostAddress>
 #include "privatechat.h"
+#include <QIODevice>
 
 TcpClient::TcpClient(QWidget *parent)
     : QWidget(parent)
@@ -241,6 +242,16 @@ void TcpClient::recvMsg()
     {
         OpeWidget::getInstance().getBook()->clearEnterName();
         QMessageBox::information(this, "进入文件夹", pdu->caData);
+        break;
+    }
+    case ENUM_MSG_TYPE_DELETE_FILE_RESPOND:
+    {
+        QMessageBox::information(this, "删除文件", pdu->caData);
+        break;
+    }
+    case ENUM_MSG_TYPE_UPLOAD_FILE_RESPOND:
+    {
+        QMessageBox::information(this, "上传文件", pdu->caData);
         break;
     }
     default:

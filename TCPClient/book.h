@@ -7,6 +7,8 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include "protocol.h"
+#include<QTimer>
+#include<QFile>
 
 class Book : public QWidget
 {
@@ -26,6 +28,9 @@ public slots:
     void renameFile();
     void enterDir(const QModelIndex &index);
     void returnPre();
+    void uploadFile();
+    void uploadFileData();
+    void delFile();
 
 private:
     QListWidget *m_pBookListLW;
@@ -40,6 +45,10 @@ private:
     QPushButton *m_pShareFilePB;
 
     QString m_strEnterDir;
+    QString m_strUploadFilePath;
+    QTimer *m_pTimer;
+    QString m_strSaveFilePath;
+    bool m_pDownload;
 
 };
 

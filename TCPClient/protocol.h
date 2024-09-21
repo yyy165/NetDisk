@@ -28,6 +28,10 @@ typedef unsigned int uint;
 #define RENAME_FILE_OK "重命名文件成功"
 #define RENAME_FILE_FAIL "重命名文件失败"
 #define ENTER_DIR_FAIL "进入文件夹失败 : 不可进入常规文件"
+#define UPLOAD_FILE_OK "上传文件成功"
+#define UPLOAD_FILE_FAIL "上传文件失败"
+#define DEL_FILE_OK "删除文件成功"
+#define DEL_FILE_FAIL "删除文件失败 : 是文件夹"
 
 enum ENUM_MSG_TYPE
 {
@@ -79,6 +83,12 @@ enum ENUM_MSG_TYPE
 
     ENUM_MSG_TYPE_ENTER_DIR_REQUEST,   //进入文件夹请求
     ENUM_MSG_TYPE_ENTER_DIR_RESPOND,   //进入文件夹回复
+
+    ENUM_MSG_TYPE_UPLOAD_FILE_REQUEST,   //上传文件请求
+    ENUM_MSG_TYPE_UPLOAD_FILE_RESPOND,   //上传文件回复
+
+    ENUM_MSG_TYPE_DELETE_FILE_REQUEST,   //删除文件请求
+    ENUM_MSG_TYPE_DELETE_FILE_RESPOND,   //删除文件回复
 
     ENUM_MSG_TYPE_MAX = 0x00ffffff
 };
